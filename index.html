@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>本地书签导航站</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.14.0/Sortable.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>本地书签导航站</h1>
+        <div class="controls">
+            <button id="themeToggle" class="theme-toggle" title="切换暗黑/明亮模式">
+                <span class="light-icon">🌞</span>
+                <span class="dark-icon">🌙</span>
+            </button>
+            <button id="autoClassifyBtn" class="control-btn" title="智能分类书签">
+                <i class="fas fa-magic"></i>
+            </button>
+            <button id="simplifyNamesBtn" class="control-btn" title="简化书签名称">
+                <i class="fas fa-font"></i>
+            </button>
+            <button id="exportBtn" class="control-btn" title="导出书签">
+                <i class="fas fa-file-export"></i>
+            </button>
+            <button id="settingsBtn" class="control-btn" title="设置">
+                <i class="fas fa-cog"></i>
+            </button>
+            <button id="clearData" class="clear-data" title="清除保存的数据">🗑️</button>
+        </div>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="搜索收藏网站...">
+        </div>
+    </header>
+    
+    <main>
+        <div class="upload-container" id="uploadContainer">
+            <p>请上传您的Chrome收藏夹文件</p>
+            <input type="file" id="bookmarkFile" accept=".html">
+        </div>
+        
+        <div id="favoritesContainer" class="favorites-container" style="display: none;">
+            <h2 class="section-title">常用书签</h2>
+            <ul class="bookmark-list" id="favoritesList"></ul>
+        </div>
+        
+        <div class="view-controls">
+            <button id="gridViewBtn" class="view-btn active" title="网格视图">
+                <i class="fas fa-th-large"></i>
+            </button>
+            <button id="listViewBtn" class="view-btn" title="列表视图">
+                <i class="fas fa-list"></i>
+            </button>
+        </div>
+        
+        <div class="bookmarks-container grid-view" id="bookmarksContainer"></div>
+    </main>
+    
+    <!-- 设置面板 -->
+    <div id="settingsPanel" class="settings-panel">
+        <div class="settings-content">
+            <h2>设置</h2>
+            <button id="closeSettings" class="close-btn"><i class="fas fa-times"></i></button>
+            
+            <div class="settings-section">
+                <h3>主题颜色</h3>
+                <div class="color-options">
+                    <button class="color-option" data-color="#4285f4" style="background-color: #4285f4;"></button>
+                    <button class="color-option" data-color="#34a853" style="background-color: #34a853;"></button>
+                    <button class="color-option" data-color="#ea4335" style="background-color: #ea4335;"></button>
+                    <button class="color-option" data-color="#fbbc05" style="background-color: #fbbc05;"></button>
+                    <button class="color-option" data-color="#673ab7" style="background-color: #673ab7;"></button>
+                    <button class="color-option" data-color="#ff5722" style="background-color: #ff5722;"></button>
+                </div>
+            </div>
+            
+            <div class="settings-section">
+                <h3>动画效果</h3>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="animationToggle" checked>
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+            
+            <div class="settings-section">
+                <h3>分享书签</h3>
+                <p>生成一个链接，分享您的书签导航站：</p>
+                <button id="generateShareLink" class="btn">生成分享链接</button>
+                <div id="shareLinkContainer" style="display: none;">
+                    <input type="text" id="shareLink" readonly>
+                    <button id="copyShareLink" class="btn">复制</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>基于AI辅助开发的个人导航站 &copy; 2023</p>
+    </footer>
+    
+    <script src="script.js"></script>
+</body>
+</html> 
